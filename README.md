@@ -5,6 +5,8 @@ A simple React 360 application which includes:
 * Ambient and point light
 * An interactive button
 
+![Saltwash360](https://rdmilligan.files.wordpress.com/2018/10/react360_gettingstarted_browser.png "Saltwash360")
+
 [Watch the video](https://www.youtube.com/watch?v=SJTSmHTRC7E)
 
 [Read the post](https://rdmilligan.wordpress.com/2018/10/14/getting-started-with-react-360/)
