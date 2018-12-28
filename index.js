@@ -1,18 +1,29 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, View, VrButton } from 'react-360';
+import { AppRegistry, StyleSheet, Text, View, VrButton, Image } from 'react-360';
 import Truck from './truck';
-import {asset, NativeModules} from 'react-360';
+import { Environment, asset, NativeModules } from 'react-360';
 const {AudioModule} = NativeModules;
 
 export default class Saltwash360 extends React.Component {
   state = {
     count: 0,
+    isSunEnvironment: false
   };
 
   incrementCount = () => {
     
     // Increment count
     this.setState({count: this.state.count + 1});
+  };
+
+  switchEnvironment = () => {
+    
+    // Switch environment
+    const isSunEnvironment = this.state.isSunEnvironment;
+    
+    isSunEnvironment ? Environment.setBackgroundImage(asset('360_world.jpg')) : Environment.setBackgroundImage(asset('360WorldSun.jpg'));
+    
+    this.setState({isSunEnvironment: !isSunEnvironment});
   };
 
   componentDidMount() {
@@ -42,6 +53,13 @@ export default class Saltwash360 extends React.Component {
               {`Press me: ${this.state.count}`}
             </Text>
           </VrButton>
+          <VrButton
+            onClick={this.switchEnvironment}>
+            {this.state.isSunEnvironment ?
+              <Image source={asset('Moon.png')} style={styles.switchEnvironment}/> : 
+              <Image source={asset('Sun.png')} style={styles.switchEnvironment}/>
+            }
+          </VrButton>
         </View>
       </View>
     );
@@ -51,7 +69,7 @@ export default class Saltwash360 extends React.Component {
 const styles = StyleSheet.create({
   panel: {
     width: 1000,
-    height: 600,
+    height: 500,
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
@@ -64,6 +82,10 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 30,
+  },
+  switchEnvironment: {
+    height: 100, 
+    width: 100
   },
 });
 
