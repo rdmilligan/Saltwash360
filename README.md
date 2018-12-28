@@ -6,9 +6,9 @@ A simple React 360 application which includes:
 * A text button to increment a counter
 * An image button to switch the background image
 
-![Saltwash360](https://rdmilligan.files.wordpress.com/2018/12/React360_BackgroundImage_Night.png "Saltwash360")
+![Saltwash360](https://rdmilligan.files.wordpress.com/2018/12/React360_BackgroundImage_Moon.png "Saltwash360")
 
-[Watch the video](https://www.youtube.com/watch?v=V9y4GKabkho)
+[Watch the video](https://www.youtube.com/watch?v=PHJEDJHxvkU)
 
 [Read the post](https://rdmilligan.wordpress.com/2018/12/28/react-360-background-image/)
 
