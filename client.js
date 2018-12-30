@@ -1,5 +1,4 @@
-import {ReactInstance} from 'react-360-web';
-import {Location} from 'react-360-web';
+import {ReactInstance, Location} from 'react-360-web';
 
 function init(bundle, parent, options = {}) {
   const r360 = new ReactInstance(bundle, parent, {
@@ -7,16 +6,19 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-  // Create a location 2.8 meters in front of the user, and 1 meter down
-  const location = new Location([0, -1, -2.8]);
-
-  // Render a truck to this location
+  // Render a truck to location
   r360.renderToLocation(
     r360.createRoot('Truck'),
-    location,
+    new Location([0, -1, -2.8]),
   );
 
-  // Render app content to the default cylinder surface
+  // Render a flower to location
+  r360.renderToLocation(
+    r360.createRoot('Flower'),
+    new Location([-2, -1, -3.8]),
+  );
+
+  // Render app content to default cylinder surface
   r360.renderToSurface(
     r360.createRoot('Saltwash360', {}),
     r360.getDefaultSurface()

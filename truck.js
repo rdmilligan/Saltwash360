@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, View, asset, AmbientLight, PointLight } from 'react-360';
+import {View, AmbientLight, PointLight, asset} from 'react-360';
 import Entity from 'Entity';
 
 export default class Truck extends React.Component {
@@ -51,5 +51,3 @@ export default class Truck extends React.Component {
     );
   };
 };
-
-AppRegistry.registerComponent('Truck', () => Truck);
