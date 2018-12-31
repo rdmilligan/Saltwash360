@@ -15,7 +15,7 @@ class Saltwash360 extends React.Component {
     
     isSunEnvironment ? Environment.setBackgroundImage(asset('360_world.jpg')) : Environment.setBackgroundImage(asset('360WorldSun.jpg'));
     
-    setSunEnvironment(!isSunEnvironment)
+    setSunEnvironment(!isSunEnvironment);
   };
 
   componentDidMount() {
