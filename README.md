@@ -16,7 +16,7 @@ A simple React 360 application which includes:
 
 First, [install React 360](https://facebook.github.io/react-360/docs/setup.html) and create a default project.
 
-Next, drop the Saltwash360 files into the default project (incl. replacing the default client.js and index.js files)
+Next, drop the Saltwash360 files into the default project (incl. replacing the default client.js and index.js files).
 
 And that's it! Run the project in a browser - you can pan around the virtual world with a mouse. 
 

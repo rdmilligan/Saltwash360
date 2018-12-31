@@ -12,10 +12,6 @@ function updateComponents() {
   }
 };
 
-export function initialize() {
-  updateComponents();
-};
-
 export function setSunEnvironment(isSunEnvironment) {
   State.isSunEnvironment = isSunEnvironment;
   updateComponents();
