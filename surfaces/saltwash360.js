@@ -1,25 +1,25 @@
 import React from 'react';
-import {connect, setSunEnvironment} from '../store/store';
+import Zone from '../constants/zoneconstants';
+import {isZone, isMoonSunMountains} from '../helpers/zonehelpers';
+import {connect, setZone} from '../store/store';
 import {Environment, asset, NativeModules, View, StyleSheet, VrButton, Text, Image} from 'react-360';
 const {AudioModule} = NativeModules;
 
 class Saltwash360 extends React.Component {
-  state = {
-    count: 0
-  };
 
-  switchEnvironment = () => {
+  switchZone = () => {
     
-    // Switch environment
-    const isSunEnvironment = this.props.isSunEnvironment;
+    // Switch zone
+    const isSunMountains = isZone(this.props.zone, Zone.SunMountains);
     
-    isSunEnvironment ? Environment.setBackgroundImage(asset('360_world.jpg')) : Environment.setBackgroundImage(asset('360WorldSun.jpg'));
+    isSunMountains ? Environment.setBackgroundImage(asset('360_world.jpg')) : Environment.setBackgroundImage(asset('360WorldSun.jpg'));
     
-    setSunEnvironment(!isSunEnvironment);
+    setZone(isSunMountains ? Zone.MoonMountains : Zone.SunMountains);
   };
 
   componentDidMount() {
     setTimeout(() => { 
+      if (!isMoonSunMountains(this.props.zone)) return;
 
       // Sound the truck's horn after 15 sec
       AudioModule.createAudio('Horn', {
@@ -37,20 +37,27 @@ class Saltwash360 extends React.Component {
   render() {
     return (
       <View style={styles.panel}>
-        <VrButton
-          onClick={() => this.setState({count: this.state.count + 1})} // Increment count
-          style={styles.greetingBox}>
-          <Text style={styles.greeting}>
-            {`Press me: ${this.state.count}`}
-          </Text>
-        </VrButton>
-        <VrButton
-          onClick={this.switchEnvironment}>
-          {this.props.isSunEnvironment ?
-            <Image source={asset('Moon.png')} style={styles.switchEnvironment}/> : 
-            <Image source={asset('Sun.png')} style={styles.switchEnvironment}/>
-          }
-        </VrButton>
+
+        {isMoonSunMountains(this.props.zone) &&
+        <View>
+          <VrButton
+            onClick={() => setZone(Zone.Exit)} // Exit
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Exit
+            </Text>
+          </VrButton>
+
+          <VrButton
+            onClick={this.switchZone}>
+            {isZone(this.props.zone, Zone.SunMountains) ?
+              <Image source={asset('Moon.png')} style={styles.switchZone}/> : 
+              <Image source={asset('Sun.png')} style={styles.switchZone}/>
+            }
+          </VrButton>
+        </View>
+        }
+
       </View>
     );
   };
@@ -69,11 +76,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     borderColor: '#639dda',
     borderWidth: 2,
+    alignItems: 'center',
   },
   greeting: {
     fontSize: 30,
   },
-  switchEnvironment: {
+  switchZone: {
     height: 100, 
     width: 100
   },

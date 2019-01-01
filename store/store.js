@@ -1,7 +1,8 @@
 import React from 'react';
+import Zone from '../constants/zoneconstants';
 
 const State = {
-  isSunEnvironment: false
+  zone: Zone.MoonMountains
 };
 
 const listeners = new Set();
@@ -12,20 +13,20 @@ function updateComponents() {
   }
 };
 
-export function setSunEnvironment(isSunEnvironment) {
-  State.isSunEnvironment = isSunEnvironment;
+export function setZone(zone) {
+  State.zone = zone;
   updateComponents();
 };
 
 export function connect(Component) {
   return class Wrapper extends React.Component {
     state = {
-        isSunEnvironment: State.isSunEnvironment
+      zone: State.zone
     };
 
     _listener = () => {
       this.setState({
-        isSunEnvironment: State.isSunEnvironment
+        zone: State.zone
       });
     };
 
@@ -41,7 +42,7 @@ export function connect(Component) {
       return (
         <Component
           {...this.props}
-          isSunEnvironment={this.state.isSunEnvironment}
+          zone={this.state.zone}
         />
       );
     };

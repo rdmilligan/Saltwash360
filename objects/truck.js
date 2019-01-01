@@ -1,8 +1,10 @@
 import React from 'react';
+import {isMoonSunMountains} from '../helpers/zonehelpers';
+import {connect} from '../store/store';
 import {View, AmbientLight, PointLight, asset} from 'react-360';
 import Entity from 'Entity';
 
-export default class Truck extends React.Component {
+class Truck extends React.Component {
   state = {
     translateX: 0,
     rotateY: 0
@@ -11,6 +13,10 @@ export default class Truck extends React.Component {
   componentDidMount() {
     setTimeout(() => { 
       this.interval = setInterval(() => { 
+        if (!isMoonSunMountains(this.props.zone)){
+          clearInterval(this.interval);
+          return;
+        }
 
         // After 15 sec, rotate truck and drive off!
         if(this.state.rotateY < 120){
@@ -30,6 +36,7 @@ export default class Truck extends React.Component {
 
   render() {
     return (
+      isMoonSunMountains(this.props.zone) && 
       <View>
         <AmbientLight intensity={ 2 } />
         <PointLight style={{color: 'white', transform: [{translate: [0, 1, 2]}]}} />
@@ -51,3 +58,7 @@ export default class Truck extends React.Component {
     );
   };
 };
+
+const ConnectedTruck = connect(Truck);
+
+export default ConnectedTruck;
