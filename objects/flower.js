@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from './store';
+import {connect} from '../store/store';
 import {View, asset} from 'react-360';
 import Entity from 'Entity';
 

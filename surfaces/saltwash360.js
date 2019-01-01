@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, setSunEnvironment} from './store';
+import {connect, setSunEnvironment} from '../store/store';
 import {Environment, asset, NativeModules, View, StyleSheet, VrButton, Text, Image} from 'react-360';
 const {AudioModule} = NativeModules;
 
