@@ -3,7 +3,7 @@
 A simple React 360 application which includes:
 * A truck that beeps its horn and drives away
 * Ambient and point light
-* A text button to increment a counter
+* A text button to enter a room
 * An image button to switch the environment and conditionally render a flower
 
 ![Saltwash360](https://rdmilligan.files.wordpress.com/2018/12/React360_3DObject_Flower.png "Saltwash360")
@@ -12,7 +12,7 @@ A simple React 360 application which includes:
 
 [Watch the video](https://www.youtube.com/watch?v=ZW2PeJsYvss)
 
-[Read the post](https://rdmilligan.wordpress.com/2018/12/30/react-360-3d-object/)
+[Read the post](https://rdmilligan.wordpress.com/2018/12/31/react-360-virtual-reality-on-the-web/)
 
 ## How to get started
 
