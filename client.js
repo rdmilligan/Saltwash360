@@ -18,6 +18,12 @@ function init(bundle, parent, options = {}) {
     new Location([-2, -1, -3.8]),
   );
 
+  // Render lypzo to location
+  r360.renderToLocation(
+    r360.createRoot('Lypzo'),
+    new Location([0, -2, 0]),
+  );
+
   // Render app content to default cylinder surface
   r360.renderToSurface(
     r360.createRoot('Saltwash360', {}),

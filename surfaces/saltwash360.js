@@ -41,10 +41,10 @@ class Saltwash360 extends React.Component {
         {isMoonSunMountains(this.props.zone) &&
         <View>
           <VrButton
-            onClick={() => setZone(Zone.Exit)} // Exit
+            onClick={() => setZone(Zone.Lypzo)}
             style={styles.greetingBox}>
             <Text style={styles.greeting}>
-              Exit
+              Enter
             </Text>
           </VrButton>
 
