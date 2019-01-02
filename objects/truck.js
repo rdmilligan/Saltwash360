@@ -1,8 +1,9 @@
 import React from 'react';
 import {isMoonSunMountains} from '../helpers/zonehelpers';
 import {connect} from '../store/store';
-import {View, AmbientLight, PointLight, asset} from 'react-360';
+import {View, AmbientLight, PointLight, NativeModules, asset} from 'react-360';
 import Entity from 'Entity';
+const {AudioModule} = NativeModules;
 
 class Truck extends React.Component {
   state = {
@@ -12,21 +13,33 @@ class Truck extends React.Component {
 
   componentDidMount() {
     setTimeout(() => { 
+      if (!isMoonSunMountains(this.props.zone)) return;
+
+      // Sound the truck's horn after 15 sec
+      AudioModule.createAudio('Horn', {
+        source: asset('Horn.wav'),
+        is3d: true,
+      });
+
+      AudioModule.play('Horn', {
+        position: [0, -1, -2.5], // Position horn at truck in 3D space
+      });
+
+      // Rotate truck and drive off!
       this.interval = setInterval(() => { 
         if (!isMoonSunMountains(this.props.zone)){
           clearInterval(this.interval);
           return;
         }
 
-        // After 15 sec, rotate truck and drive off!
-        if(this.state.rotateY < 120){
+        if (this.state.rotateY < 120){
           this.setState({rotateY: this.state.rotateY + 1});
           this.setState({translateX: this.state.translateX + 0.01});
-        } else{
+        } else {
           this.setState({translateX: this.state.translateX + 0.1});
         }
-
       }, 50);
+
     }, 15000);
   };
 

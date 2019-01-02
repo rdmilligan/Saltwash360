@@ -2,8 +2,7 @@ import React from 'react';
 import Zone from '../constants/zoneconstants';
 import {isZone, isMoonSunMountains} from '../helpers/zonehelpers';
 import {connect, setZone} from '../store/store';
-import {Environment, asset, NativeModules, View, StyleSheet, VrButton, Text, Image} from 'react-360';
-const {AudioModule} = NativeModules;
+import {Environment, asset, View, StyleSheet, VrButton, Text, Image} from 'react-360';
 
 class Saltwash360 extends React.Component {
 
@@ -15,23 +14,6 @@ class Saltwash360 extends React.Component {
     isSunMountains ? Environment.setBackgroundImage(asset('360_world.jpg')) : Environment.setBackgroundImage(asset('360WorldSun.jpg'));
     
     setZone(isSunMountains ? Zone.MoonMountains : Zone.SunMountains);
-  };
-
-  componentDidMount() {
-    setTimeout(() => { 
-      if (!isMoonSunMountains(this.props.zone)) return;
-
-      // Sound the truck's horn after 15 sec
-      AudioModule.createAudio('Horn', {
-        source: asset('Horn.wav'),
-        is3d: true,
-      });
-
-      AudioModule.play('Horn', {
-        position: [0, -1, -2.5], // Position horn at truck in 3D space
-      });
-
-    }, 15000);
   };
 
   render() {
