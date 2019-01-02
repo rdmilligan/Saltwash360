@@ -64,7 +64,7 @@ class Truck extends React.Component {
               {translateX: this.state.translateX},
               {rotateY: this.state.rotateY},
               {scale: 10}
-            ],
+            ]
           }}
         />
       </View>
