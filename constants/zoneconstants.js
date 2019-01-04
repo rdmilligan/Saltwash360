@@ -1,7 +1,8 @@
 const Zone = {
     MoonMountains: 'MoonMountains',
     SunMountains: 'SunMountains',
-    Lypzo: 'Lypzo'
+    Lypzo: 'Lypzo',
+    Tikjo: 'Tikjo'
 };
 
 export default Zone;

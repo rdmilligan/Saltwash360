@@ -40,6 +40,12 @@ class Saltwash360 extends React.Component {
         </View>
         }
 
+        {isZone(this.props.zone, Zone.Lypzo) &&
+          <Text style={styles.greeting}>
+            Hit the trash till it spins, and again till it spews.
+          </Text>
+        }
+
       </View>
     );
   };

@@ -18,11 +18,11 @@ class Truck extends React.Component {
       // Sound the truck's horn after 15 sec
       AudioModule.createAudio('Horn', {
         source: asset('Horn.wav'),
-        is3d: true,
+        is3d: true
       });
 
       AudioModule.play('Horn', {
-        position: [0, -1, -2.5], // Position horn at truck in 3D space
+        position: [0, -1, -2.5] // Position horn at truck in 3D space
       });
 
       // Rotate truck and drive off!
