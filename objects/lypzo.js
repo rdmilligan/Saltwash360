@@ -22,7 +22,7 @@ class Lypzo extends React.Component {
 
         // Play the trashcan jive
         AudioModule.createAudio('TrashcanJive', {
-            source: asset('TrashcanJive.mp3'),
+            source: asset('TrashcanJive.MP3'),
             is3d: true
         });
 
