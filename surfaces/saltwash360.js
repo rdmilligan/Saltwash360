@@ -46,7 +46,7 @@ class Saltwash360 extends React.Component {
           <Text style={styles.greeting}>
           {
             isAction(this.props.action, Action.PencilSeek) ? 'Just the ricket to crank the gunge.' :
-            isAction(this.props.action, Action.TrashcanSpew) ? 'Trashcan needs to be brought down a peg or two. Seek a wedge.' :
+            isAction(this.props.action, Action.TrashcanSpew) ? 'Trash can needs to be brought down a peg or two. Seek a wedge.' :
             'Hit the trash till it spins, and again till it spews.'
           }
           </Text>
@@ -54,9 +54,7 @@ class Saltwash360 extends React.Component {
 
         {isZone(this.props.zone, Zone.Tikjo) &&
           <Text style={styles.greeting}>
-          {
-            'Don\'t fish in the trash.'
-          }
+            Don't fish in the trash.
           </Text>
         }
 

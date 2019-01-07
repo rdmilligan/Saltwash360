@@ -14,7 +14,7 @@ class Lypzo extends React.Component {
 
     state = {
         isTrashcanJive: false,
-        translatePencil: [0,0,0]
+        translatePencil: [0, 0, 0]
     };
 
     handleTrashcan = () => {
@@ -50,7 +50,7 @@ class Lypzo extends React.Component {
         }
 
         setAction(Action.PencilSeek);
-        this.setState({translatePencil: [6,1.85,2]});
+        this.setState({translatePencil: [6, 1.85, 2]});
     };
 
     render() {
@@ -58,11 +58,11 @@ class Lypzo extends React.Component {
             isZone(this.props.zone, Zone.Lypzo) && 
             <View>
                 <PointLight 
-                    distance='20'
+                    distance={ 20 }
                     style={{
                         color: 'white', 
                         transform: [
-                            {translate: [2.5 + this.state.translatePencil[0], 3.5, 2 + this.state.translatePencil[2]]}
+                            {translate: [1.5 + this.state.translatePencil[0], 3.5, 2 + this.state.translatePencil[2]]}
                         ]
                     }} />
                 <VrButton
