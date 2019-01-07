@@ -1,6 +1,8 @@
 import React from 'react';
 import Zone from '../constants/zoneconstants';
+import Action from '../constants/actionconstants';
 import {isZone, isMoonSunMountains} from '../helpers/zonehelpers';
+import {isAction} from '../helpers/actionhelpers';
 import {connect, setZone} from '../store/store';
 import {Environment, asset, View, StyleSheet, VrButton, Text, Image} from 'react-360';
 
@@ -42,7 +44,19 @@ class Saltwash360 extends React.Component {
 
         {isZone(this.props.zone, Zone.Lypzo) &&
           <Text style={styles.greeting}>
-            Hit the trash till it spins, and again till it spews.
+          {
+            isAction(this.props.action, Action.PencilSeek) ? 'Just the ricket to crank the gunge.' :
+            isAction(this.props.action, Action.TrashcanSpew) ? 'Trashcan needs to be brought down a peg or two. Seek a wedge.' :
+            'Hit the trash till it spins, and again till it spews.'
+          }
+          </Text>
+        }
+
+        {isZone(this.props.zone, Zone.Tikjo) &&
+          <Text style={styles.greeting}>
+          {
+            'Don\'t fish in the trash.'
+          }
           </Text>
         }
 

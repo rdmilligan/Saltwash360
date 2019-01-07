@@ -2,7 +2,8 @@ import React from 'react';
 import Zone from '../constants/zoneconstants';
 
 const State = {
-  zone: Zone.MoonMountains
+  zone: Zone.MoonMountains,
+  action: ''
 };
 
 const listeners = new Set();
@@ -18,15 +19,22 @@ export function setZone(zone) {
   updateComponents();
 };
 
+export function setAction(action) {
+  State.action = action;
+  updateComponents();
+};
+
 export function connect(Component) {
   return class Wrapper extends React.Component {
     state = {
-      zone: State.zone
+      zone: State.zone,
+      action: State.action
     };
 
     _listener = () => {
       this.setState({
-        zone: State.zone
+        zone: State.zone,
+        action: State.action
       });
     };
 
@@ -43,6 +51,7 @@ export function connect(Component) {
         <Component
           {...this.props}
           zone={this.state.zone}
+          action={this.state.action}
         />
       );
     };

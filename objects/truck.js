@@ -52,7 +52,7 @@ class Truck extends React.Component {
       isMoonSunMountains(this.props.zone) && 
       <View>
         <AmbientLight intensity={ 2 } />
-        <PointLight style={{color: 'white', transform: [{translate: [0, 1, 2]}]}} />
+        <PointLight distance='5' style={{color: 'white', transform: [{translate: [0, 1, 2]}]}} />
         <Entity
           source={{
             obj: asset('Truck.obj'),
