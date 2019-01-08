@@ -1,5 +1,7 @@
 # Saltwash 360
 
+[Try Saltwash 360 online](https://rdmilligan.github.io/saltwash-360/)
+
 A simple React 360 application which includes:
 * A truck that beeps its horn and drives away
 * Ambient and point light
@@ -7,8 +9,6 @@ A simple React 360 application which includes:
 * An image button to switch the environment and conditionally render a flower
 
 ![Saltwash360](https://rdmilligan.files.wordpress.com/2019/01/React360_Room.png "Saltwash 360")
-
-[Try it online](https://rdmilligan.github.io/saltwash-360/)
 
 [Watch the video](https://www.youtube.com/watch?v=ZW2PeJsYvss)
 

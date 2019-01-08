@@ -4,69 +4,90 @@ import Action from '../constants/actionconstants';
 import {isZone} from '../helpers/zonehelpers';
 import {isAction} from '../helpers/actionhelpers';
 import {connect, setZone, setAction} from '../store/store';
-import {View, VrButton, PointLight, NativeModules, Animated, asset} from 'react-360';
+import {View, VrButton, AmbientLight, PointLight, NativeModules, Animated, asset} from 'react-360';
 import Entity from 'Entity';
 const {AudioModule} = NativeModules;
 const AnimatedEntity = Animated.createAnimatedComponent(Entity);
 
 class Lypzo extends React.Component {
-    rotation = new Animated.Value(0);
+    animatedRotation = new Animated.Value(0);
 
     state = {
         isTrashcanJive: false,
-        translatePencil: [0, 0, 0]
+        scaleTrashcan: 0,
+        scaleBench: 0,
+        translateItems: [0, 0, 0]
     };
 
     handleTrashcan = () => {
+        
+        if (!this.state.isTrashcanJive){
+
+            // Play the trashcan jive
+            AudioModule.createAudio('TrashcanJive', {
+                source: asset('TrashcanJive.MP3'),
+                is3d: true
+            });
+
+            AudioModule.play('TrashcanJive', {
+                position: [2, -1, -2]
+            });
+
+            this.setState({isTrashcanJive: true});
+
+            // Spin the trash
+            Animated.timing(this.animatedRotation, {toValue: 360, duration: 6000}).start();
+
+            return;
+        }
+
         if (isAction(this.props.action, Action.PencilSeek)){
             setZone(Zone.Tikjo);
             return;
         }
 
-        if (this.state.isTrashcanJive) {
+        if (!isAction(this.props.action, Action.TrashcanSpew)){
+
+            // Play the trashcan plee
+            AudioModule.createAudio('TrashcanPlee', {
+                source: asset('TrashcanPlee.MP3'),
+                is3d: true
+            });
+
+            AudioModule.play('TrashcanPlee', {
+                position: [2, -1, -2]
+            });
+
             setAction(Action.TrashcanSpew);
-            return;
         }
-
-        // Play the trashcan jive
-        AudioModule.createAudio('TrashcanJive', {
-            source: asset('TrashcanJive.MP3'),
-            is3d: true
-        });
-
-        AudioModule.play('TrashcanJive', {
-            position: [2, -1, -2]
-        });
-
-        this.setState({isTrashcanJive: true});
-
-        // Spin the trash
-        Animated.timing(this.rotation, {toValue: 360, duration: 6000}).start();
     };
 
     handlePencil = () => {
-        if (!isAction(this.props.action, Action.TrashcanSpew)){
-            return;
-        }
 
-        setAction(Action.PencilSeek);
-        this.setState({translatePencil: [6, 1.85, 2]});
+        if (isAction(this.props.action, Action.TrashcanSpew)){
+            setAction(Action.PencilSeek);
+            this.setState({translateItems: [6.0, 1.85, 1.9]});
+        }
     };
 
     render() {
         return (
             isZone(this.props.zone, Zone.Lypzo) && 
             <View>
+                <AmbientLight intensity={ 0.6 } />
                 <PointLight 
-                    distance={ 20 }
+                    distance={ 10 }
                     style={{
                         color: 'white', 
                         transform: [
-                            {translate: [1.5 + this.state.translatePencil[0], 3.5, 2 + this.state.translatePencil[2]]}
+                            {translate: [1.5 + this.state.translateItems[0], 3.5, 2 + this.state.translateItems[2]]}
                         ]
                     }} />
                 <VrButton
-                    onClick={this.handleTrashcan}>
+                    onClick={this.handleTrashcan}
+                    onEnter={() => this.setState({scaleTrashcan: 0.1})}
+                    onExit={() => this.setState({scaleTrashcan: 0})}
+                    >
                     <AnimatedEntity
                         source={{
                             obj: asset('Trashcan.obj'),
@@ -75,15 +96,17 @@ class Lypzo extends React.Component {
                         lit={true}
                         style={{
                             transform: [
-                                {translate: [2 + this.state.translatePencil[0], -0.01, -2 + this.state.translatePencil[2]]},
-                                {rotateY: this.rotation},
-                                {scale: 1.2}
+                                {translate: [2 + this.state.translateItems[0], -0.01, -2 + this.state.translateItems[2]]},
+                                {rotateY: this.animatedRotation},
+                                {scale: 1.2 + this.state.scaleTrashcan}
                             ]
                         }}
                     />
                 </VrButton>
                 <VrButton
-                    onClick={this.handlePencil}>
+                    onClick={this.handlePencil}
+                    onEnter={() => this.setState({scaleBench: 0.1})}
+                    onExit={() => this.setState({scaleBench: 0})}>
                     <Entity
                         source={{
                             obj: asset('Bench.obj'),
@@ -92,9 +115,9 @@ class Lypzo extends React.Component {
                         lit={true}
                         style={{
                             transform: [
-                                {translate: [-6.8 + this.state.translatePencil[0], 0, -1.7 + this.state.translatePencil[2]]},
+                                {translate: [-6.8 + this.state.translateItems[0], 0, -1.8 + this.state.translateItems[2]]},
                                 {rotateY: 95},
-                                {scale: 1.5}
+                                {scale: 1.3 + this.state.scaleBench}
                             ]
                         }}
                     />
@@ -106,7 +129,7 @@ class Lypzo extends React.Component {
                         lit={true}
                         style={{
                             transform: [
-                                {translate: [-6 + this.state.translatePencil[0], 0 + this.state.translatePencil[1], -3 + this.state.translatePencil[2]]},
+                                {translate: [-5.9 + this.state.translateItems[0], 0 + this.state.translateItems[1], -3 + this.state.translateItems[2]]},
                                 {rotateY: 320}
                             ]
                         }}
@@ -119,7 +142,7 @@ class Lypzo extends React.Component {
                     }}
                     style={{
                         transform: [
-                            {translate: [0 + this.state.translatePencil[0], 0, 0 + this.state.translatePencil[2]]},
+                            {translate: [0 + this.state.translateItems[0], 0, 0 + this.state.translateItems[2]]},
                         ]
                     }}
                 />

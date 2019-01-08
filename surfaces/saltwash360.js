@@ -45,7 +45,7 @@ class Saltwash360 extends React.Component {
         {isZone(this.props.zone, Zone.Lypzo) &&
           <Text style={styles.greeting}>
           {
-            isAction(this.props.action, Action.PencilSeek) ? 'Just the ricket to crank the gunge.' :
+            isAction(this.props.action, Action.PencilSeek) ? 'Just the ricket to crank the gunge. Try it on the trash can.' :
             isAction(this.props.action, Action.TrashcanSpew) ? 'Trash can needs to be brought down a peg or two. Seek a wedge.' :
             'Hit the trash till it spins, and again till it spews.'
           }
