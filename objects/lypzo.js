@@ -48,13 +48,13 @@ class Lypzo extends React.Component {
 
         if (!isAction(this.props.action, Action.TrashcanSpew)){
 
-            // Play the trashcan plee
-            AudioModule.createAudio('TrashcanPlee', {
-                source: asset('TrashcanPlee.MP3'),
+            // Play the trashcan rebuke
+            AudioModule.createAudio('TrashcanRebuke', {
+                source: asset('TrashcanRebuke.MP3'),
                 is3d: true
             });
 
-            AudioModule.play('TrashcanPlee', {
+            AudioModule.play('TrashcanRebuke', {
                 position: [2, -1, -2]
             });
 
