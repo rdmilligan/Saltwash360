@@ -9,19 +9,19 @@ function init(bundle, parent, options = {}) {
   // Render a truck to location
   r360.renderToLocation(
     r360.createRoot('Truck'),
-    new Location([0, -1, -2.8]),
+    r360.getDefaultLocation()
   );
 
   // Render a flower to location
   r360.renderToLocation(
     r360.createRoot('Flower'),
-    new Location([-2, -1, -3.8]),
+    new Location([-2, -1, -3.8])
   );
 
   // Render lypzo to location
   r360.renderToLocation(
     r360.createRoot('Lypzo'),
-    new Location([0, -2, 0]),
+    r360.getDefaultLocation()
   );
 
   // Render app content to default cylinder surface

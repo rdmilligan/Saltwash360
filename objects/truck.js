@@ -1,9 +1,9 @@
 import React from 'react';
 import {isMoonSunMountains} from '../helpers/zonehelpers';
+import {play3DAudio} from './helpers/objecthelpers';
 import {connect} from '../store/store';
-import {View, AmbientLight, PointLight, NativeModules, asset} from 'react-360';
+import {View, AmbientLight, PointLight, asset} from 'react-360';
 import Entity from 'Entity';
-const {AudioModule} = NativeModules;
 
 class Truck extends React.Component {
   state = {
@@ -16,14 +16,7 @@ class Truck extends React.Component {
       if (!isMoonSunMountains(this.props.zone)) return;
 
       // Sound the truck's horn after 15 sec
-      AudioModule.createAudio('Horn', {
-        source: asset('Horn.wav'),
-        is3d: true
-      });
-
-      AudioModule.play('Horn', {
-        position: [0, -1, -2.5] // Position horn at truck in 3D space
-      });
+      play3DAudio('Horn.wav', 0.8, [0, -0.7, -2.5]);
 
       // Rotate truck and drive off!
       this.interval = setInterval(() => { 
@@ -51,8 +44,19 @@ class Truck extends React.Component {
     return (
       isMoonSunMountains(this.props.zone) && 
       <View>
-        <AmbientLight intensity={ 2 } />
-        <PointLight distance={ 5 } style={{color: 'white', transform: [{translate: [0, 1, 2]}]}} />
+        <AmbientLight intensity={ 1.5 } />
+        <PointLight distance={ 10 } style={{color: 'white', transform: [{translate: [0, 1, 2]}]}} />
+        <Entity
+          source={{
+            obj: asset('Light.obj'),
+            mtl: asset('Light.mtl')
+          }}
+          style={{
+            transform: [
+              {translate: [0, 1, 2]}
+            ]
+          }}
+        />
         <Entity
           source={{
             obj: asset('Truck.obj'),
@@ -61,7 +65,7 @@ class Truck extends React.Component {
           lit={true}
           style={{
             transform: [
-              {translateX: this.state.translateX},
+              {translate: [this.state.translateX, -1, -2.8]},
               {rotateY: this.state.rotateY},
               {scale: 10}
             ]

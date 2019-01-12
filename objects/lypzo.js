@@ -3,10 +3,10 @@ import Zone from '../constants/zoneconstants';
 import Action from '../constants/actionconstants';
 import {isZone} from '../helpers/zonehelpers';
 import {isAction} from '../helpers/actionhelpers';
+import {play3DAudio} from './helpers/objecthelpers';
 import {connect, setZone, setAction} from '../store/store';
-import {View, VrButton, AmbientLight, PointLight, NativeModules, Animated, asset} from 'react-360';
+import {View, VrButton, AmbientLight, PointLight, Animated, asset} from 'react-360';
 import Entity from 'Entity';
-const {AudioModule} = NativeModules;
 const AnimatedEntity = Animated.createAnimatedComponent(Entity);
 
 class Lypzo extends React.Component {
@@ -22,22 +22,9 @@ class Lypzo extends React.Component {
     handleTrashcan = () => {
         
         if (!this.state.isTrashcanJive){
-
-            // Play the trashcan jive
-            AudioModule.createAudio('TrashcanJive', {
-                source: asset('TrashcanJive.MP3'),
-                is3d: true
-            });
-
-            AudioModule.play('TrashcanJive', {
-                position: [2, -1, -2]
-            });
-
+            play3DAudio('TrashcanJive.MP3', 1, [2, -1, -2]); // Play the trashcan jive
             this.setState({isTrashcanJive: true});
-
-            // Spin the trash
-            Animated.timing(this.animatedRotation, {toValue: 360, duration: 6000}).start();
-
+            Animated.timing(this.animatedRotation, {toValue: 360, duration: 6000}).start(); // Spin the trash
             return;
         }
 
@@ -47,17 +34,7 @@ class Lypzo extends React.Component {
         }
 
         if (!isAction(this.props.action, Action.TrashcanSpew)){
-
-            // Play the trashcan rebuke
-            AudioModule.createAudio('TrashcanRebuke', {
-                source: asset('TrashcanRebuke.MP3'),
-                is3d: true
-            });
-
-            AudioModule.play('TrashcanRebuke', {
-                position: [2, -1, -2]
-            });
-
+            play3DAudio('TrashcanRebuke.MP3', 0.6, [2, -1, -2]); // Play the trashcan rebuke
             setAction(Action.TrashcanSpew);
         }
     };
@@ -82,7 +59,19 @@ class Lypzo extends React.Component {
                         transform: [
                             {translate: [1.5 + this.state.translateItems[0], 3.5, 2 + this.state.translateItems[2]]}
                         ]
-                    }} />
+                    }} 
+                />
+                <Entity
+                    source={{
+                        obj: asset('Light.obj'),
+                        mtl: asset('Light.mtl')
+                    }}
+                    style={{
+                        transform: [
+                            {translate: [1.5 + this.state.translateItems[0], 3.5, 2 + this.state.translateItems[2]]}
+                        ]
+                    }}
+                />
                 <VrButton
                     onClick={this.handleTrashcan}
                     onEnter={() => this.setState({scaleTrashcan: 0.1})}
@@ -96,7 +85,7 @@ class Lypzo extends React.Component {
                         lit={true}
                         style={{
                             transform: [
-                                {translate: [2 + this.state.translateItems[0], -0.01, -2 + this.state.translateItems[2]]},
+                                {translate: [2 + this.state.translateItems[0], -2.01, -2 + this.state.translateItems[2]]},
                                 {rotateY: this.animatedRotation},
                                 {scale: 1.2 + this.state.scaleTrashcan}
                             ]
@@ -115,7 +104,7 @@ class Lypzo extends React.Component {
                         lit={true}
                         style={{
                             transform: [
-                                {translate: [-6.8 + this.state.translateItems[0], 0, -1.8 + this.state.translateItems[2]]},
+                                {translate: [-6.8 + this.state.translateItems[0], -2, -1.8 + this.state.translateItems[2]]},
                                 {rotateY: 95},
                                 {scale: 1.3 + this.state.scaleBench}
                             ]
@@ -129,7 +118,7 @@ class Lypzo extends React.Component {
                         lit={true}
                         style={{
                             transform: [
-                                {translate: [-5.9 + this.state.translateItems[0], 0 + this.state.translateItems[1], -3 + this.state.translateItems[2]]},
+                                {translate: [-5.9 + this.state.translateItems[0], -2 + this.state.translateItems[1], -3 + this.state.translateItems[2]]},
                                 {rotateY: 320}
                             ]
                         }}
@@ -142,7 +131,7 @@ class Lypzo extends React.Component {
                     }}
                     style={{
                         transform: [
-                            {translate: [0 + this.state.translateItems[0], 0, 0 + this.state.translateItems[2]]},
+                            {translate: [this.state.translateItems[0], -2, this.state.translateItems[2]]},
                         ]
                     }}
                 />

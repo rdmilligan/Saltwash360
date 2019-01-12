@@ -1,18 +1,12 @@
 # Saltwash 360
 
-[Try Saltwash 360 online](https://rdmilligan.github.io/saltwash-360/)
+Saltwash 360 is a virtual world on a web page, built with React 360.
 
-A simple React 360 application which includes:
-* A truck that beeps its horn and drives away
-* Ambient and point light
-* A text button to enter a room
-* An image button to switch the environment and conditionally render a flower
+[Try Saltwash 360 online](https://rdmilligan.github.io/saltwash-360/)
 
 ![Saltwash360](https://rdmilligan.files.wordpress.com/2019/01/React360_Room.png "Saltwash 360")
 
-[Watch the video](https://www.youtube.com/watch?v=ZW2PeJsYvss)
-
-[Read the post](https://rdmilligan.wordpress.com/2018/12/31/react-360-virtual-reality-on-the-web/)
+[Read the post](https://rdmilligan.wordpress.com/2019/01/09/react-360-movement/)
 
 ## How to get started
 
