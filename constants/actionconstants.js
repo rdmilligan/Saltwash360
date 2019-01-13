@@ -1,6 +1,7 @@
 const Action = {
     TrashcanSpew: 'TrashcanSpew',
-    PencilSeek: 'PencilSeek'
+    PencilSeek: 'PencilSeek',
+    TrashcanJam: 'TrashcanJam'
 };
 
 export default Action;

@@ -15,35 +15,49 @@ class Lypzo extends React.Component {
     state = {
         isTrashcanJive: false,
         scaleTrashcan: 0,
-        scaleBench: 0,
+        scalePencilBench: 0,
+        scaleDoor: 0,
         translateItems: [0, 0, 0]
     };
 
     handleTrashcan = () => {
         
+        // Step 1: spin trashcan
         if (!this.state.isTrashcanJive){
-            play3DAudio('TrashcanJive.MP3', 1, [2, -1, -2]); // Play the trashcan jive
+            play3DAudio('TrashcanJive.MP3', 1, [2, -1, -2]);
             this.setState({isTrashcanJive: true});
-            Animated.timing(this.animatedRotation, {toValue: 360, duration: 6000}).start(); // Spin the trash
+            Animated.timing(this.animatedRotation, {toValue: 360, duration: 6000}).start();
             return;
         }
 
-        if (isAction(this.props.action, Action.PencilSeek)){
-            setZone(Zone.Tikjo);
-            return;
-        }
-
-        if (!isAction(this.props.action, Action.TrashcanSpew)){
-            play3DAudio('TrashcanRebuke.MP3', 0.6, [2, -1, -2]); // Play the trashcan rebuke
+        // Step 2: spew trashcan
+        if (isAction(this.props.action, '')){
+            play3DAudio('TrashcanRebuke.MP3', 0.6, [2, -1, -2]);
             setAction(Action.TrashcanSpew);
+            return;
+        }
+
+        // Step 4: jam trashcan
+        if (isAction(this.props.action, Action.PencilSeek)){
+            setAction(Action.TrashcanJam);
+            this.setState({translateItems: [0, 0, 0]});
         }
     };
 
-    handlePencil = () => {
+    handlePencilBench = () => {
 
+        // Step 3: seek pencil
         if (isAction(this.props.action, Action.TrashcanSpew)){
             setAction(Action.PencilSeek);
             this.setState({translateItems: [6.0, 1.85, 1.9]});
+        }
+    };
+
+    handleDoor = () => {
+
+        // Step 5: zone Tikjo
+        if (isAction(this.props.action, Action.TrashcanJam)){
+            setZone(Zone.Tikjo);
         }
     };
 
@@ -93,9 +107,23 @@ class Lypzo extends React.Component {
                     />
                 </VrButton>
                 <VrButton
-                    onClick={this.handlePencil}
-                    onEnter={() => this.setState({scaleBench: 0.1})}
-                    onExit={() => this.setState({scaleBench: 0})}>
+                    onClick={this.handlePencilBench}
+                    onEnter={() => this.setState({scalePencilBench: 0.1})}
+                    onExit={() => this.setState({scalePencilBench: 0})}>
+                    <Entity
+                        source={{
+                            obj: asset('Pencil.obj'),
+                            mtl: asset('Pencil.mtl')
+                        }}
+                        lit={true}
+                        style={{
+                            transform: [
+                                {translate: [-5.9 + this.state.translateItems[0], -2 + this.state.translateItems[1], -3 + this.state.translateItems[2]]},
+                                {rotateY: 320},
+                                {scale: 1.0 + this.state.scalePencilBench}
+                            ]
+                        }}
+                    />
                     <Entity
                         source={{
                             obj: asset('Bench.obj'),
@@ -106,20 +134,7 @@ class Lypzo extends React.Component {
                             transform: [
                                 {translate: [-6.8 + this.state.translateItems[0], -2, -1.8 + this.state.translateItems[2]]},
                                 {rotateY: 95},
-                                {scale: 1.3 + this.state.scaleBench}
-                            ]
-                        }}
-                    />
-                    <Entity
-                        source={{
-                            obj: asset('Pencil.obj'),
-                            mtl: asset('Pencil.mtl')
-                        }}
-                        lit={true}
-                        style={{
-                            transform: [
-                                {translate: [-5.9 + this.state.translateItems[0], -2 + this.state.translateItems[1], -3 + this.state.translateItems[2]]},
-                                {rotateY: 320}
+                                {scale: 1.3 + this.state.scalePencilBench}
                             ]
                         }}
                     />
@@ -135,6 +150,35 @@ class Lypzo extends React.Component {
                         ]
                     }}
                 />
+                <Entity
+                    source={{
+                        obj: asset('Door.obj'),
+                        mtl: asset('Door.mtl')
+                    }}
+                    style={{
+                        transform: [
+                            {translate: [this.state.translateItems[0], -2, 9.0 + this.state.translateItems[2]]},
+                            {rotateY: 180}
+                        ]
+                    }}
+                />
+                <VrButton
+                    onClick={this.handleDoor}
+                    onEnter={() => this.setState({scaleDoor: 0.1})}
+                    onExit={() => this.setState({scaleDoor: 0})}>
+                    <Entity
+                        source={{
+                            obj: asset('Door.obj'),
+                            mtl: asset('Door.mtl')
+                        }}
+                        style={{
+                            transform: [
+                                {translate: [8.5 + this.state.translateItems[0], -2, -9.0 + this.state.translateItems[2]]},
+                                {scale: 1.0 + this.state.scaleDoor}
+                            ]
+                        }}
+                    />
+                </VrButton>
             </View>
         );
     };
