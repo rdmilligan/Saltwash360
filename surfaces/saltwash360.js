@@ -4,7 +4,8 @@ import Action from '../constants/actionconstants';
 import {isZone, isMoonSunMountains} from '../helpers/zonehelpers';
 import {isAction} from '../helpers/actionhelpers';
 import {connect, setZone} from '../store/store';
-import {Environment, asset, View, StyleSheet, VrButton, Text, Image} from 'react-360';
+import {Environment, NativeModules, asset, View, StyleSheet, VrButton, Text, Image} from 'react-360';
+const {VideoModule} = NativeModules;
 
 class Saltwash360 extends React.Component {
 
@@ -18,12 +19,20 @@ class Saltwash360 extends React.Component {
     setZone(isSunMountains ? Zone.MoonMountains : Zone.SunMountains);
   };
 
+  fishVideo = () => {
+
+    // Play fish video
+    VideoModule.createPlayer('myplayer');
+    VideoModule.play('myplayer', { source: {url: asset('StripeFish.mp4').uri}, muted: false });
+    Environment.setScreen('default', 'myplayer', 'default', 0, 0, 1000, 500);
+  };
+
   render() {
     return (
-      <View style={styles.panel}>
+      <View>
 
         {isMoonSunMountains(this.props.zone) &&
-        <View>
+        <View style={styles.panel}>
           <VrButton
             onClick={() => setZone(Zone.Lypzo)}
             style={styles.greetingBox}>
@@ -43,6 +52,7 @@ class Saltwash360 extends React.Component {
         }
 
         {isZone(this.props.zone, Zone.Lypzo) &&
+        <View style={styles.panel}>
           <Text style={styles.greeting}>
           {
             isAction(this.props.action, Action.TrashcanJam) ? 'Damn. The lid won\'t budge. Take a sharp exit.' :
@@ -51,13 +61,10 @@ class Saltwash360 extends React.Component {
             'Hit the trash till it spins, and again till it spews.'
           }
           </Text>
+        </View>
         }
 
-        {isZone(this.props.zone, Zone.Tikjo) &&
-          <Text style={styles.greeting}>
-            Don't fish in the trash.
-          </Text>
-        }
+        {isZone(this.props.zone, Zone.Tikjo) && this.fishVideo()}
 
       </View>
     );
