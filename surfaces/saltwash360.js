@@ -6,6 +6,7 @@ import {isAction} from '../helpers/actionhelpers';
 import {connect, setZone} from '../store/store';
 import {Environment, NativeModules, asset, View, StyleSheet, VrButton, Text, Image} from 'react-360';
 const {VideoModule} = NativeModules;
+VideoModule.createPlayer('myplayer');
 
 class Saltwash360 extends React.Component {
 
@@ -19,12 +20,18 @@ class Saltwash360 extends React.Component {
     setZone(isSunMountains ? Zone.MoonMountains : Zone.SunMountains);
   };
 
-  fishVideo = () => {
+  playVideo = (filename, duration, nextZone) => {
 
-    // Play fish video
-    VideoModule.createPlayer('myplayer');
-    VideoModule.play('myplayer', { source: {url: asset('StripeFish.mp4').uri}, muted: false });
+    // Play video
+    VideoModule.play('myplayer', { source: {url: asset(filename).uri}, muted: false });
     Environment.setScreen('default', 'myplayer', 'default', 0, 0, 1000, 500);
+
+    // Stop video
+    setTimeout(function(){
+      VideoModule.stop('myplayer');
+      Environment.setScreen('default', 'myplayer', 'default', 0, 0, -1, -1);
+      setZone(nextZone);
+     }, duration);
   };
 
   render() {
@@ -64,7 +71,17 @@ class Saltwash360 extends React.Component {
         </View>
         }
 
-        {isZone(this.props.zone, Zone.Tikjo) && this.fishVideo()}
+        {isZone(this.props.zone, Zone.Tikjo) && this.playVideo('StripeFish.mp4', 19000, Zone.Krixo)}
+
+        {isZone(this.props.zone, Zone.Krixo) &&
+        <View style={styles.panel}>
+          <Text style={styles.greeting}>
+          {
+            'Insects preside. Get in the sea!'
+          }
+          </Text>
+        </View>
+        }
 
       </View>
     );
