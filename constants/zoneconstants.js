@@ -3,7 +3,8 @@ const Zone = {
     SunMountains: 'SunMountains',
     Lypzo: 'Lypzo',
     Tikjo: 'Tikjo',
-    Krixo: 'Krixo'
+    Krixo: 'Krixo',
+    Gretz: 'Gretz'
 };
 
 export default Zone;

@@ -24,6 +24,12 @@ function init(bundle, parent, options = {}) {
     r360.getDefaultLocation()
   );
 
+  // Render gretz to location
+  r360.renderToLocation(
+    r360.createRoot('Gretz'),
+    r360.getDefaultLocation()
+  );
+
   // Render app content to default cylinder surface
   r360.renderToSurface(
     r360.createRoot('Saltwash360', {}),

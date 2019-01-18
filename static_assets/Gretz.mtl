@@ -1,4 +1,4 @@
-# Blender MTL File: 'Lypzo.blend'
+# Blender MTL File: 'Gretz.blend'
 # Material Count: 6
 
 newmtl Ceiling
@@ -54,7 +54,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd GlobeWall.png
+map_Kd FloralWall.png
 
 newmtl Wall_NONE
 Ns 96.078431
@@ -65,4 +65,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd GlobeWall.png
+map_Kd FloralWall.png

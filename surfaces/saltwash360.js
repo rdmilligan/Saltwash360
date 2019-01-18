@@ -75,10 +75,20 @@ class Saltwash360 extends React.Component {
 
         {isZone(this.props.zone, Zone.Krixo) &&
         <View style={styles.panel}>
+          <VrButton
+            onClick={() => setZone(Zone.Gretz)}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Fry the fish
+            </Text>
+          </VrButton>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Gretz) &&
+        <View style={styles.panel}>
           <Text style={styles.greeting}>
-          {
-            'Insects preside. Get in the sea!'
-          }
+            Talk to the yellow fillet.
           </Text>
         </View>
         }
