@@ -61,7 +61,7 @@ class Gretz extends React.Component {
                 <Entity
                     source={{
                         obj: asset('Sumo.obj'),
-                        mtl: asset('sumo.mtl')
+                        mtl: asset('Sumo.mtl')
                     }}
                     lit={true}
                     style={{
