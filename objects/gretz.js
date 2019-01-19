@@ -17,7 +17,7 @@ class Gretz extends React.Component {
                     style={{
                         color: 'white', 
                         transform: [
-                            {translate: [1.5, 3.5, 2]}
+                            {translate: [7.5, 3.5, -4]}
                         ]
                     }} 
                 />
@@ -28,7 +28,7 @@ class Gretz extends React.Component {
                     }}
                     style={{
                         transform: [
-                            {translate: [1.5, 3.5, 2]}
+                            {translate: [7.5, 3.5, -4]}
                         ]
                     }}
                 />
@@ -40,9 +40,33 @@ class Gretz extends React.Component {
                     lit={true}
                     style={{
                         transform: [
-                            {translate: [-2, 0, -1]},
+                            {translate: [4, 0, -2]},
                             {rotateY: 20},
-                            {scale: 2}
+                        ]
+                    }}
+                />
+                <Entity
+                    source={{
+                        obj: asset('BlueFish.obj'),
+                        mtl: asset('BlueFish.mtl')
+                    }}
+                    lit={true}
+                    style={{
+                        transform: [
+                            {translate: [7, 0, -1]},
+                            {rotateY: 40},
+                        ]
+                    }}
+                />
+                <Entity
+                    source={{
+                        obj: asset('Sumo.obj'),
+                        mtl: asset('sumo.mtl')
+                    }}
+                    lit={true}
+                    style={{
+                        transform: [
+                            {translate: [-4, 0, -1.5]},
                         ]
                     }}
                 />
@@ -53,7 +77,30 @@ class Gretz extends React.Component {
                     }}
                     style={{
                         transform: [
-                            {translate: [0, -2, 0]},
+                            {translate: [6, -2, -6]},
+                        ]
+                    }}
+                />
+                <Entity
+                    source={{
+                        obj: asset('Door.obj'),
+                        mtl: asset('Door.mtl')
+                    }}
+                    style={{
+                        transform: [
+                            {translate: [0, -2, 3.0]},
+                            {rotateY: 180}
+                        ]
+                    }}
+                />
+                <Entity
+                    source={{
+                        obj: asset('Door.obj'),
+                        mtl: asset('Door.mtl')
+                    }}
+                    style={{
+                        transform: [
+                            {translate: [14.5, -2, -15.0]},
                         ]
                     }}
                 />
