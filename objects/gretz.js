@@ -34,6 +34,20 @@ class Gretz extends React.Component {
                 />
                 <Entity
                     source={{
+                        obj: asset('StripeFish.obj'),
+                        mtl: asset('StripeFish.mtl')
+                    }}
+                    lit={true}
+                    style={{
+                        transform: [
+                            {translate: [-2, 0, -1]},
+                            {rotateY: 20},
+                            {scale: 2}
+                        ]
+                    }}
+                />
+                <Entity
+                    source={{
                         obj: asset('Gretz.obj'),
                         mtl: asset('Gretz.mtl')
                     }}
