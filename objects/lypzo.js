@@ -10,7 +10,7 @@ import Entity from 'Entity';
 const AnimatedEntity = Animated.createAnimatedComponent(Entity);
 
 class Lypzo extends React.Component {
-    animatedRotation = new Animated.Value(0);
+    animTrashcanRotY = new Animated.Value(0);
 
     state = {
         isTrashcanJive: false,
@@ -26,7 +26,7 @@ class Lypzo extends React.Component {
         if (!this.state.isTrashcanJive){
             play3DAudio('TrashcanJive.MP3', 1, [2, -1, -2]);
             this.setState({isTrashcanJive: true});
-            Animated.timing(this.animatedRotation, {toValue: 360, duration: 6000}).start();
+            Animated.timing(this.animTrashcanRotY, {toValue: 360, duration: 6000}).start();
             return;
         }
 
@@ -57,6 +57,7 @@ class Lypzo extends React.Component {
 
         // Step 5: zone Tikjo
         if (isAction(this.props.action, Action.TrashcanJam)){
+            setAction('');
             setZone(Zone.Tikjo);
         }
     };
@@ -100,7 +101,7 @@ class Lypzo extends React.Component {
                         style={{
                             transform: [
                                 {translate: [2 + this.state.translateItems[0], -2.01, -2 + this.state.translateItems[2]]},
-                                {rotateY: this.animatedRotation},
+                                {rotateY: this.animTrashcanRotY},
                                 {scale: 1.2 + this.state.scaleTrashcan}
                             ]
                         }}
@@ -146,7 +147,7 @@ class Lypzo extends React.Component {
                     }}
                     style={{
                         transform: [
-                            {translate: [this.state.translateItems[0], -2, this.state.translateItems[2]]},
+                            {translate: [this.state.translateItems[0], -2, this.state.translateItems[2]]}
                         ]
                     }}
                 />

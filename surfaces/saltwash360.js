@@ -88,7 +88,12 @@ class Saltwash360 extends React.Component {
         {isZone(this.props.zone, Zone.Gretz) &&
         <View style={styles.panel}>
           <Text style={styles.greeting}>
-            Talk to the yellow fillet.
+          {
+            isAction(this.props.action, Action.BlueFishTickle) ? 'Hot fingers need a bucket of water. Better exit.' :
+            isAction(this.props.action, Action.StripedFishTickle) ? 'Damn. Your hasty paws lit a jolt.' :
+            isAction(this.props.action, Action.SumoConsult) ? 'Master says: tickle the fillet of lines.' :
+            'Consult with the Master.'
+          }
           </Text>
         </View>
         }

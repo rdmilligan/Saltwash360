@@ -4,7 +4,8 @@ const Zone = {
     Lypzo: 'Lypzo',
     Tikjo: 'Tikjo',
     Krixo: 'Krixo',
-    Gretz: 'Gretz'
+    Gretz: 'Gretz',
+    Ookei: 'Ookei'
 };
 
 export default Zone;
