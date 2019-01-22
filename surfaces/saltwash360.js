@@ -98,6 +98,16 @@ class Saltwash360 extends React.Component {
         </View>
         }
 
+        {isZone(this.props.zone, Zone.Ookei) && this.playVideo('TerrorChimp.mp4', 21000, Zone.Buzko)}
+
+        {isZone(this.props.zone, Zone.Buzko) && 
+        <View style={styles.panel}>
+          <Text style={styles.greeting}>
+            Who's got the plums, maannnnnn?
+          </Text>
+        </View>     
+        }
+
       </View>
     );
   };

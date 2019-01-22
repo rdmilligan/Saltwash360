@@ -4,8 +4,9 @@ import Action from '../constants/actionconstants';
 import {isZone} from '../helpers/zonehelpers';
 import {isAction} from '../helpers/actionhelpers';
 import {connect, setZone, setAction} from '../store/store';
-import {View, VrButton, AmbientLight, PointLight, Animated, asset} from 'react-360';
+import {View, VrButton, AmbientLight, PointLight, Animated, asset, NativeModules} from 'react-360';
 import Entity from 'Entity';
+const {AudioModule} = NativeModules;
 const AnimatedEntity = Animated.createAnimatedComponent(Entity);
 
 class Gretz extends React.Component {
@@ -32,6 +33,7 @@ class Gretz extends React.Component {
         
         // Step 2: tickle striped fish
         if (isAction(this.props.action, Action.SumoConsult)){
+            AudioModule.playEnvironmental({source: asset('Aquarium.MP3'), volume: 0.3});
             this.setState({translateItems: [-5, 0, 0]});
             setAction(Action.StripedFishTickle);
             Animated.timing(this.animStripeFishPosZ, {toValue: -9, duration: 6000}).start();
@@ -51,6 +53,7 @@ class Gretz extends React.Component {
 
         // Step 4: zone Ookei
         if (isAction(this.props.action, Action.BlueFishTickle)){
+            AudioModule.stopEnvironmental();
             setAction('');
             setZone(Zone.Ookei);
         }
