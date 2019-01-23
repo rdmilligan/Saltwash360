@@ -4,7 +4,9 @@ const Action = {
     TrashcanJam: 'TrashcanJam',
     SumoConsult: 'SumoConsult',
     StripedFishTickle: 'StripedFishTickle',
-    BlueFishTickle: 'BlueFishTickle'
+    BlueFishTickle: 'BlueFishTickle',
+    RoundTreeRustle: 'RoundTreeRustle',
+    LayerTreeRustle: 'LayerTreeRustle'
 };
 
 export default Action;

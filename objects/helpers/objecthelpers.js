@@ -13,3 +13,11 @@ export function play3DAudio(fileName, volume, position) {
         position: position
     });
 };
+
+export function playEnvironmentalAudio(fileName, volume) {
+    AudioModule.playEnvironmental({source: asset(fileName), volume: volume});
+};
+
+export function stopEnvironmentalAudio() {
+    AudioModule.stopEnvironmental();
+}

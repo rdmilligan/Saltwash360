@@ -102,10 +102,36 @@ class Saltwash360 extends React.Component {
 
         {isZone(this.props.zone, Zone.Buzko) && 
         <View style={styles.panel}>
+          <VrButton
+            onClick={() => setZone(Zone.Xiotz)}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Who's got the plums, maannnnnn?
+            </Text>
+          </VrButton>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Xiotz) &&
+        <View style={styles.panel}>
           <Text style={styles.greeting}>
-            Who's got the plums, maannnnnn?
+          {
+            isAction(this.props.action, Action.RoundTreeRustle) ? `Oh smouldering karma, boosted to ${this.props.karma}.` :
+            isAction(this.props.action, Action.LayerTreeRustle) ? 'Too bad you shook the wrong trunk. No karma boost for you.' :
+            'Rustle the leaves to dislodge the primate.'
+          }
           </Text>
-        </View>     
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Fryzo) && this.playVideo('TumblingDice.mp4', 14000, Zone.Janew)}
+
+        {isZone(this.props.zone, Zone.Janew) && 
+        <View style={styles.panel}>
+          <Text style={styles.greeting}>
+            Your luck is dry.
+          </Text>
+        </View>
         }
 
       </View>

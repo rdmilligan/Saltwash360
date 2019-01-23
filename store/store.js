@@ -3,7 +3,8 @@ import Zone from '../constants/zoneconstants';
 
 const State = {
   zone: Zone.MoonMountains,
-  action: ''
+  action: '',
+  karma: 0
 };
 
 const listeners = new Set();
@@ -24,17 +25,24 @@ export function setAction(action) {
   updateComponents();
 };
 
+export function incrementKarma() {
+  State.karma++;
+  updateComponents();
+};
+
 export function connect(Component) {
   return class Wrapper extends React.Component {
     state = {
       zone: State.zone,
-      action: State.action
+      action: State.action,
+      karma: State.karma
     };
 
     _listener = () => {
       this.setState({
         zone: State.zone,
-        action: State.action
+        action: State.action,
+        karma: State.karma
       });
     };
 
@@ -52,6 +60,7 @@ export function connect(Component) {
           {...this.props}
           zone={this.state.zone}
           action={this.state.action}
+          karma={this.state.karma}
         />
       );
     };

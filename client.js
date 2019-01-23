@@ -6,29 +6,12 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-  // Render a truck to location
-  r360.renderToLocation(
-    r360.createRoot('Truck'),
-    r360.getDefaultLocation()
-  );
-
-  // Render a flower to location
-  r360.renderToLocation(
-    r360.createRoot('Flower'),
-    new Location([-2, -1, -3.8])
-  );
-
-  // Render lypzo to location
-  r360.renderToLocation(
-    r360.createRoot('Lypzo'),
-    r360.getDefaultLocation()
-  );
-
-  // Render gretz to location
-  r360.renderToLocation(
-    r360.createRoot('Gretz'),
-    r360.getDefaultLocation()
-  );
+  // Render to location
+  r360.renderToLocation(r360.createRoot('Truck'), r360.getDefaultLocation());
+  r360.renderToLocation(r360.createRoot('Flower'), new Location([-2, -1, -3.8]));
+  r360.renderToLocation(r360.createRoot('Lypzo'), r360.getDefaultLocation());
+  r360.renderToLocation(r360.createRoot('Gretz'), r360.getDefaultLocation());
+  r360.renderToLocation(r360.createRoot('Xiotz'), r360.getDefaultLocation());
 
   // Render app content to default cylinder surface
   r360.renderToSurface(
