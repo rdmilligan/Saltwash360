@@ -9,7 +9,9 @@ const Zone = {
     Buzko: 'Buzko',
     Xiotz: 'Xiotz',
     Fryzo: 'Fryzo',
-    Janew: 'Janew'
+    Janew: 'Janew',
+    Errit: 'Errit',
+    Driza: 'Driza'
 };
 
 export default Zone;

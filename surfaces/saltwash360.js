@@ -117,8 +117,8 @@ class Saltwash360 extends React.Component {
           <Text style={styles.greeting}>
           {
             isAction(this.props.action, Action.RoundTreeRustle) ? `Oh smouldering karma, boosted to ${this.props.karma}.` :
-            isAction(this.props.action, Action.LayerTreeRustle) ? 'Too bad you shook the wrong trunk. No karma boost for you.' :
-            'Rustle the leaves to dislodge the primate.'
+            isAction(this.props.action, Action.LayerTreeRustle) ? `Too bad you shook the wrong trunk. Karma frozen at ${this.props.karma}.` :
+            'Rustle the leaves of the plum top tree to dislodge the primate.'
           }
           </Text>
         </View>
@@ -128,8 +128,31 @@ class Saltwash360 extends React.Component {
 
         {isZone(this.props.zone, Zone.Janew) && 
         <View style={styles.panel}>
+          <VrButton
+            onClick={() => setZone(Zone.Errit)}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Luck is not always dry
+            </Text>
+          </VrButton>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Errit) &&
+        <View style={styles.panel}>
           <Text style={styles.greeting}>
-            Your luck is dry.
+          {
+            isAction(this.props.action, Action.DiceRoll) ? `Wow, lucky number seven. Karma soars to ${this.props.karma}.` :
+            'Hit the switch to roll the floating dice.'
+          }
+          </Text>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Driza) && 
+        <View style={styles.panel}>
+          <Text style={styles.greeting}>
+            Today is red.
           </Text>
         </View>
         }

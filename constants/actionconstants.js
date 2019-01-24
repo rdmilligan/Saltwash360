@@ -6,7 +6,8 @@ const Action = {
     StripedFishTickle: 'StripedFishTickle',
     BlueFishTickle: 'BlueFishTickle',
     RoundTreeRustle: 'RoundTreeRustle',
-    LayerTreeRustle: 'LayerTreeRustle'
+    LayerTreeRustle: 'LayerTreeRustle',
+    DiceRoll: 'DiceRoll'
 };
 
 export default Action;

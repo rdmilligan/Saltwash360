@@ -101,7 +101,7 @@ class Gretz extends React.Component {
                                 {translateY: 0},
                                 {translateZ: this.animStripeFishPosZ},
                                 {rotateY: 20},
-                                {scale: 1.0 + this.state.scaleStripeFish}
+                                {scale: 1.2 + this.state.scaleStripeFish}
                             ]
                         }}
                     />
