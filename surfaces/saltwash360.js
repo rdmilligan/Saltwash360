@@ -148,11 +148,38 @@ class Saltwash360 extends React.Component {
           </Text>
         </View>
         }
+        
+        {isZone(this.props.zone, Zone.Driza) && this.playVideo('HauntedCow.mp4', 27000, Zone.Aoera)}
 
-        {isZone(this.props.zone, Zone.Driza) && 
+        {isZone(this.props.zone, Zone.Aoera) && 
+        <View style={styles.panel}>
+          <VrButton
+            onClick={() => setZone(Zone.Nerka)}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Bring a pitchfork
+            </Text>
+          </VrButton>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Nerka) &&
         <View style={styles.panel}>
           <Text style={styles.greeting}>
-            Today is red.
+          {
+            isAction(this.props.action, Action.CowIgnore) ? `The pigs have chewed your legs off. Karma falls to ${this.props.karma}.` :
+            isAction(this.props.action, Action.CowConsult) ? `The cow has offered a safe haven. Karma calm at ${this.props.karma}.` :
+            isAction(this.props.action, Action.PigsMarch) ? 'Beware of the three little pigs!' :
+            'Oh, what does the switch do?'
+          }
+          </Text>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Rastl) && 
+        <View style={styles.panel}>
+          <Text style={styles.greeting}>
+            Farms smell of horse shit.
           </Text>
         </View>
         }

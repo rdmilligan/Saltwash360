@@ -105,6 +105,7 @@ class Xiotz extends React.Component {
                             obj: asset('Switch.obj'),
                             mtl: asset('Switch.mtl')
                         }}
+                        lit={true}
                         style={{
                             transform: [
                                 {translate: [-1, -1, -2.0]},

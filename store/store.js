@@ -30,6 +30,11 @@ export function incrementKarma() {
   updateComponents();
 };
 
+export function decrementKarma() {
+  State.karma--;
+  updateComponents();
+};
+
 export function connect(Component) {
   return class Wrapper extends React.Component {
     state = {

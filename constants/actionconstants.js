@@ -7,7 +7,10 @@ const Action = {
     BlueFishTickle: 'BlueFishTickle',
     RoundTreeRustle: 'RoundTreeRustle',
     LayerTreeRustle: 'LayerTreeRustle',
-    DiceRoll: 'DiceRoll'
+    DiceRoll: 'DiceRoll',
+    PigsMarch: 'PigsMarch',
+    CowConsult: 'CowConsult',
+    CowIgnore: 'CowIgnore'
 };
 
 export default Action;
