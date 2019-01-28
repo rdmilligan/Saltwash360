@@ -10,9 +10,9 @@ VideoModule.createPlayer('myplayer');
 
 class Saltwash360 extends React.Component {
 
-  switchZone = () => {
+  switchBackground = () => {
     
-    // Switch zone
+    // Switch background
     const isSunMountains = isZone(this.props.zone, Zone.SunMountains);
     
     isSunMountains ? Environment.setBackgroundImage(asset('360_world.jpg')) : Environment.setBackgroundImage(asset('360WorldSun.jpg'));
@@ -49,10 +49,10 @@ class Saltwash360 extends React.Component {
           </VrButton>
 
           <VrButton
-            onClick={this.switchZone}>
+            onClick={this.switchBackground}>
             {isZone(this.props.zone, Zone.SunMountains) ?
-              <Image source={asset('Moon.png')} style={styles.switchZone}/> : 
-              <Image source={asset('Sun.png')} style={styles.switchZone}/>
+              <Image source={asset('Moon.png')} style={styles.switchBackground}/> : 
+              <Image source={asset('Sun.png')} style={styles.switchBackground}/>
             }
           </VrButton>
         </View>
@@ -106,7 +106,7 @@ class Saltwash360 extends React.Component {
             onClick={() => setZone(Zone.Xiotz)}
             style={styles.greetingBox}>
             <Text style={styles.greeting}>
-              Who's got the plums, maannnnnn?
+              Who's got the plums?
             </Text>
           </VrButton>
         </View>
@@ -132,7 +132,7 @@ class Saltwash360 extends React.Component {
             onClick={() => setZone(Zone.Errit)}
             style={styles.greetingBox}>
             <Text style={styles.greeting}>
-              Luck is not always dry
+              Red letter day
             </Text>
           </VrButton>
         </View>
@@ -143,7 +143,7 @@ class Saltwash360 extends React.Component {
           <Text style={styles.greeting}>
           {
             isAction(this.props.action, Action.DiceRoll) ? `Wow, lucky number seven. Karma soars to ${this.props.karma}.` :
-            'Hit the switch to roll the floating dice.'
+            'Hit the switch to roll the dice.'
           }
           </Text>
         </View>
@@ -167,8 +167,8 @@ class Saltwash360 extends React.Component {
         <View style={styles.panel}>
           <Text style={styles.greeting}>
           {
-            isAction(this.props.action, Action.CowIgnore) ? `The pigs have chewed your legs off. Karma falls to ${this.props.karma}.` :
-            isAction(this.props.action, Action.CowConsult) ? `The cow has offered a safe haven. Karma calm at ${this.props.karma}.` :
+            isAction(this.props.action, Action.CowIgnore) ? `The pigs have chewed your legs off. Karma plummets to ${this.props.karma}.` :
+            isAction(this.props.action, Action.CowConsult) ? `The cow has offered a safe haven. Karma calmer at ${this.props.karma}.` :
             isAction(this.props.action, Action.PigsMarch) ? 'Beware of the three little pigs!' :
             'Oh, what does the switch do?'
           }
@@ -180,6 +180,14 @@ class Saltwash360 extends React.Component {
         <View style={styles.panel}>
           <Text style={styles.greeting}>
             Farms smell of horse shit.
+          </Text>
+        </View>
+        }
+
+        {isZone(this.props.zone, Zone.Mortz) && 
+        <View style={styles.panel}>
+          <Text style={styles.greeting}>
+            Farms smell of red wine.
           </Text>
         </View>
         }
@@ -207,7 +215,7 @@ const styles = StyleSheet.create({
   greeting: {
     fontSize: 30,
   },
-  switchZone: {
+  switchBackground: {
     height: 100, 
     width: 100
   },

@@ -14,7 +14,8 @@ const Zone = {
     Driza: 'Driza',
     Aoera: 'Aoera',
     Nerka: 'Nerka',
-    Rastl: 'Rastl'
+    Rastl: 'Rastl',
+    Mortz: 'Mortz'
 };
 
 export default Zone;

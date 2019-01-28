@@ -16,7 +16,8 @@ class Nerka extends React.Component {
     state = {
         scaleSwitch: 0,
         scaleCow: 0,
-        scaleDoor: 0,
+        scaleLeftDoor: 0,
+        scaleFrontDoor: 0,
         translateItems: [0, 0, 0]
     };
 
@@ -42,18 +43,18 @@ class Nerka extends React.Component {
 
         // Step 2: consult cow
         if (isAction(this.props.action, Action.PigsMarch)){
-            this.setState({translateItems: [8, 0, 8]});
+            this.setState({translateItems: [7, 0, 8]});
             setAction(Action.CowConsult);
         }
     };
 
-    handleDoor = () => {
+    handleDoor = (isLeftDoor) => {
 
-        // Step 3: zone Rastl
+        // Step 3: zone Rastl or Mortz
         if (isAction(this.props.action, Action.CowConsult) ||
             isAction(this.props.action, Action.CowIgnore)){
             setAction('');
-            setZone(Zone.Rastl);
+            isLeftDoor ? setZone(Zone.Rastl) : setZone(Zone.Mortz);
         }
     };
 
@@ -83,57 +84,8 @@ class Nerka extends React.Component {
                     }}
                 />
                 
-                {!isAction(this.props.action, Action.CowConsult) && 
-                <View>
-                    <AnimatedEntity
-                        source={{
-                            obj: asset('Pig.obj'),
-                            mtl: asset('Pig.mtl')
-                        }}
-                        lit={true}
-                        style={{
-                            transform: [
-                                {translateX: this.animPigOnePosX},
-                                {translateY: -2},
-                                {translateZ: 1},
-                                {scale: 3}
-                            ]
-                        }}
-                    />
-                    <AnimatedEntity
-                        source={{
-                            obj: asset('Pig.obj'),
-                            mtl: asset('Pig.mtl')
-                        }}
-                        lit={true}
-                        style={{
-                            transform: [
-                                {translateX: this.animPigTwoPosX},
-                                {translateY: -2},
-                                {translateZ: 0},
-                                {scale: 3}
-                            ]
-                        }}
-                    />
-                    <AnimatedEntity
-                        source={{
-                            obj: asset('Pig.obj'),
-                            mtl: asset('Pig.mtl')
-                        }}
-                        lit={true}
-                        style={{
-                            transform: [
-                                {translateX: this.animPigThreePosX},
-                                {translateY: -2},
-                                {translateZ: -1},
-                                {scale: 3}
-                            ]
-                        }}
-                    />
-                </View>
-                }
-
-                {isAction(this.props.action, Action.CowConsult) && 
+                {isAction(this.props.action, Action.CowConsult) 
+                ?
                 <View>
                     <Entity
                         source={{
@@ -176,6 +128,54 @@ class Nerka extends React.Component {
                                 {translate: [6, -1.25, 7]},
                                 {rotateX: 180},
                                 {rotateY: 200},
+                                {scale: 3}
+                            ]
+                        }}
+                    />
+                </View> 
+                :
+                <View>
+                    <AnimatedEntity
+                        source={{
+                            obj: asset('Pig.obj'),
+                            mtl: asset('Pig.mtl')
+                        }}
+                        lit={true}
+                        style={{
+                            transform: [
+                                {translateX: this.animPigOnePosX},
+                                {translateY: -2},
+                                {translateZ: 1},
+                                {scale: 3}
+                            ]
+                        }}
+                    />
+                    <AnimatedEntity
+                        source={{
+                            obj: asset('Pig.obj'),
+                            mtl: asset('Pig.mtl')
+                        }}
+                        lit={true}
+                        style={{
+                            transform: [
+                                {translateX: this.animPigTwoPosX},
+                                {translateY: -2},
+                                {translateZ: 0},
+                                {scale: 3}
+                            ]
+                        }}
+                    />
+                    <AnimatedEntity
+                        source={{
+                            obj: asset('Pig.obj'),
+                            mtl: asset('Pig.mtl')
+                        }}
+                        lit={true}
+                        style={{
+                            transform: [
+                                {translateX: this.animPigThreePosX},
+                                {translateY: -2},
+                                {translateZ: -1},
                                 {scale: 3}
                             ]
                         }}
@@ -244,9 +244,9 @@ class Nerka extends React.Component {
                     }}
                 />
                 <VrButton
-                    onClick={this.handleDoor}
-                    onEnter={() => this.setState({scaleDoor: 0.1})}
-                    onExit={() => this.setState({scaleDoor: 0})}>
+                    onClick={() => this.handleDoor(true)}
+                    onEnter={() => this.setState({scaleLeftDoor: 0.1})}
+                    onExit={() => this.setState({scaleLeftDoor: 0})}>
                     <Entity
                         source={{
                             obj: asset('Door.obj'),
@@ -256,7 +256,24 @@ class Nerka extends React.Component {
                             transform: [
                                 {translate: [-16 + this.state.translateItems[0], -2, -11.0 + this.state.translateItems[2]]},
                                 {rotateY: 90},
-                                {scale: 1.0 + this.state.scaleDoor}
+                                {scale: 1.0 + this.state.scaleLeftDoor}
+                            ]
+                        }}
+                    />
+                </VrButton>
+                <VrButton
+                    onClick={() => this.handleDoor(false)}
+                    onEnter={() => this.setState({scaleFrontDoor: 0.1})}
+                    onExit={() => this.setState({scaleFrontDoor: 0})}>
+                    <Entity
+                        source={{
+                            obj: asset('Door.obj'),
+                            mtl: asset('Door.mtl')
+                        }}
+                        style={{
+                            transform: [
+                                {translate: [-14.8 + this.state.translateItems[0], -2, -15 + this.state.translateItems[2]]},
+                                {scale: 1.0 + this.state.scaleFrontDoor}
                             ]
                         }}
                     />
