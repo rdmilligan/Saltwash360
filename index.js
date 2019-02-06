@@ -8,6 +8,7 @@ import Xiotz from './objects/xiotz';
 import Errit from './objects/errit';
 import Pig from './objects/pig';
 import Nerka from './objects/nerka';
+import Rhino from './objects/rhino';
 
 AppRegistry.registerComponent('Saltwash360', () => Saltwash360);
 AppRegistry.registerComponent('Truck', () => Truck);
@@ -18,3 +19,4 @@ AppRegistry.registerComponent('Xiotz', () => Xiotz);
 AppRegistry.registerComponent('Errit', () => Errit);
 AppRegistry.registerComponent('Pig', () => Pig);
 AppRegistry.registerComponent('Nerka', () => Nerka);
+AppRegistry.registerComponent('Rhino', () => Rhino);

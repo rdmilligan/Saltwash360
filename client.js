@@ -15,6 +15,7 @@ function init(bundle, parent, options = {}) {
   r360.renderToLocation(r360.createRoot('Errit'), r360.getDefaultLocation());
   r360.renderToLocation(r360.createRoot('Pig'), r360.getDefaultLocation());
   r360.renderToLocation(r360.createRoot('Nerka'), r360.getDefaultLocation());
+  r360.renderToLocation(r360.createRoot('Rhino'), r360.getDefaultLocation());
 
   // Render app content to default cylinder surface
   r360.renderToSurface(
