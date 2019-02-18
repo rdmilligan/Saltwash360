@@ -10,6 +10,7 @@ function init(bundle, parent, options = {}) {
   r360.renderToLocation(r360.createRoot('Truck'), r360.getDefaultLocation());
   r360.renderToLocation(r360.createRoot('Flower'), new Location([-2, -1, -3.8]));
   r360.renderToLocation(r360.createRoot('Lypzo'), r360.getDefaultLocation());
+  r360.renderToLocation(r360.createRoot('Turtle'), r360.getDefaultLocation());
   r360.renderToLocation(r360.createRoot('Gretz'), r360.getDefaultLocation());
   r360.renderToLocation(r360.createRoot('Xiotz'), r360.getDefaultLocation());
   r360.renderToLocation(r360.createRoot('Errit'), r360.getDefaultLocation());
